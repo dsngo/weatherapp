@@ -17,14 +17,10 @@ const Nav = props => {
         </NavLink>
       </div>
       <div>
-        <NavLink to="/about">
-          About
-        </NavLink>
+        <NavLink to="/about">About</NavLink>
       </div>
       <div>
-        <Link to="/contact">
-          Contact
-        </Link>
+        <Link to="/contact">Contact</Link>
       </div>
       {props.showSearch && ultiSpace}
     </div>

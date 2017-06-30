@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Landing from './Landing';
 import About from './About';
 import Contact from './Contact';
 
 const App = () =>
-  <BrowserRouter>
+  <Router>
     <div className="container">
       <Switch>
         <Route exact path="/" component={Landing} />
@@ -13,6 +13,6 @@ const App = () =>
         <Route path="/contact" component={Contact} />
       </Switch>
     </div>
-  </BrowserRouter>;
+  </Router>;
 
 export default App;

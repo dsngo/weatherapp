@@ -5,7 +5,9 @@
   "author": "Daniel",
   "license": "MIT",
   "scripts": {
-    "build": "SET NODE_ENV=production && webpack -p",
+    "build:dev": "webpack",
+    "u:interactive": "yarn upgrade-interactive",
+    "build": "SET NODE_ENV=production& webpack -p",
     "dev": "webpack-dev-server --open",
     "deploy": "yarn build && firebase deploy",
     "firebase-init": "firebase login && firebase init"
@@ -19,7 +21,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.0",
+    "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
@@ -31,10 +33,11 @@
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "7.0.1",
     "html-webpack-plugin": "^2.29.0",
-    "prettier": "^1.4.4",
-    "prettier-eslint": "^6.3.0",
+    "prettier": "^1.5.2",
+    "prettier-eslint": "^6.4.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0",
+    "webpack-bundle-analyzer": "^2.8.2",
     "webpack-dev-server": "^2.5.0"
   }
 }
