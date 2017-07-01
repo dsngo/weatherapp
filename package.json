@@ -5,10 +5,12 @@
   "author": "Daniel",
   "license": "MIT",
   "scripts": {
-    "build:dev": "webpack",
-    "u:interactive": "yarn upgrade-interactive",
-    "build": "SET NODE_ENV=production& webpack -p",
-    "dev": "webpack-dev-server --open",
+    "prebuild": "rm -rf public",
+    "build": "webpack -p --env.prod",
+    "prebuild:dev": "rm -rf public",
+    "build:dev": "webpack --env.dev",
+    "dev": "webpack-dev-server --env.dev --open",
+    "ugrade:i": "yarn upgrade-interactive",
     "deploy": "yarn build && firebase deploy",
     "firebase-init": "firebase login && firebase init"
   },
