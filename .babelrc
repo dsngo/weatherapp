@@ -6,12 +6,12 @@
       "env",
       {
         "targets": {
-          "browsers": [
-            "last 2 versions",
-            "safari >= 7"
-          ]
-        }
+          "browsers": ["last 2 versions", "safari >= 7"]
+        },
+        "modules": false,
+        "useBuiltIns": true
       }
     ]
-  ]
+  ],
+  "plugins": [["transform-object-rest-spread", { "useBuiltIns": true }]]
 }

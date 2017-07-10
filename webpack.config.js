@@ -1,14 +1,17 @@
-import { resolve } from 'path';
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+const { resolve } = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-export default env => {
+module.exports = env => {
   const config = {
-    entry: resolve(__dirname, 'app/index.jsx'),
+    entry: {
+      // vendor: [resolve(__dirname, 'app/vendor')],
+      app: resolve(__dirname, 'app/index.jsx'),
+    },
     output: {
-      path: resolve(__dirname, 'public'),
-      filename: `[name]-bundle.js`,
+      path: resolve(__dirname, 'dist'),
+      filename: `js/[name]-bundle.js`,
       publicPath: '',
       pathinfo: true,
     },
@@ -28,7 +31,7 @@ export default env => {
         },
         {
           test: /\.css$/,
-          include: resolve(__dirname, 'app'),
+          include: resolve(__dirname, 'app/css'),
           use: ['style-loader', 'css-loader'],
         },
       ],
@@ -44,14 +47,30 @@ export default env => {
     config.plugins.push(
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify('production'),
+          NODE_ENV: '"production"',
         },
       }),
-      new webpack.optimize.CommonsChunkPlugin({ name: 'manifest' }),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest',
+        children: true,
+        async: true,
+        minChunk: 2,
+      }),
       new BundleAnalyzerPlugin()
     );
     config.devtool = 'hidden-source-map';
     config.output.pathinfo = false;
+  }
+  // Development config
+  if (env.dev) {
+    config.plugins.push(
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest',
+        children: true,
+        async: true,
+        minChunk: 2,
+      })
+    );
   }
   return config;
 };
