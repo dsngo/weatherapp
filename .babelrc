@@ -13,12 +13,14 @@
         "targets": {
           "browsers": ["last 2 versions", "safari >= 7"]
         },
+        "loose": true,
         "modules": false
       }
     ]
   ],
   "plugins": [
-      ["transform-class-properties"],
-      ["transform-object-rest-spread", { "useBuiltIns": true }]
-    ]
+    ["react-hot-loader/babel"],
+    ["transform-class-properties"],
+    ["transform-object-rest-spread", { "useBuiltIns": true }]
+  ]
 }
