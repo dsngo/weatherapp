@@ -9,26 +9,22 @@ const renderApp = () => render(<App />, document.getElementById('app'));
 renderApp();
 // =======
 class Bork {
-  //Property initializer syntax
-  // instanceProperty = "bork";
-  boundFunction = () => {
-    return this.instanceProperty;
-  }
+  // Property initializer syntax
+  instanceProperty = 'bork';
+  boundFunction = () => this.instanceProperty;
 
-  //Static class properties
-  static staticProperty = "babelIsCool";
-  static staticFunction = function() {
-    return Bork.staticProperty;
-  }
+  // Static class properties
+  static staticProperty = 'babelIsCool';
+  static staticFunction = () => Bork.staticProperty;
 }
 
-let myBork = new Bork;
+const myBork = new Bork();
 
-//Property initializers are not on the prototype.
+// Property initializers are not on the prototype.
 // console.log(myBork.prototype.boundFunction); // > undefined
 
-//Bound functions are bound to the class instance.
-console.log(myBork.boundFunction.call(undefined)); // > "bork"
+// Bound functions are bound to the class instance.
+console.log(myBork.boundFunction.call()); // > "bork"
 
-//Static function exists on the class.
+// Static function exists on the class.
 console.log(Bork.staticFunction()); // > "babelIsCool"
