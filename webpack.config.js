@@ -3,12 +3,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
+const devPort = 9090;
 module.exports = env => {
   const config = {
     entry: {
       app: [
         'react-hot-loader/patch',
-        'webpack-dev-server/client?http://localhost:9090',
+        `webpack-dev-server/client?http://localhost:${devPort}/`,
         'webpack/hot/only-dev-server',
         resolve(__dirname, 'app/index.jsx'),
       ],
@@ -16,13 +17,13 @@ module.exports = env => {
     output: {
       path: resolve(__dirname, 'dist'),
       filename: `assets/js/[name]-bundle.js`,
-      publicPath: '',
+      publicPath: '/',
       pathinfo: true,
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
       hot: true,
-      port: 9090,
+      port: devPort,
       historyApiFallback: true,
       // publicPath: '/dist/',
     },
